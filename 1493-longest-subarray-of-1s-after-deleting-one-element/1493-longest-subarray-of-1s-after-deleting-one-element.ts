@@ -1,26 +1,14 @@
 function longestSubarray(nums: number[]): number {
-  let prev = 0
-  let current = 0
-  let max = 0
-  if (nums.every(x => x === 1)) {
-    return nums.length - 1
-  }
-  for (let i = 0; i < nums.length; i++) {
-    const num = nums[i]
-    const next = num[i + 1]
-    if (num === 1) {
-      current += 1
-      max = Math.max(max, prev + current)
-    } else if (num === 0) {
-      max = Math.max(prev + current, max)
-      if (next === 0) {
-        prev = 0
-        current = 0
-      } else {
-        prev = current
-        current = 0
-      }
+    let start = 0;
+    let numZeroes = 0;
+    let longestWindow = 0;
+    for(let i=0; i<nums.length; i++) {
+        if(nums[i] === 0) numZeroes++;
+        while(numZeroes > 1) {
+            if(nums[start] === 0) numZeroes--;
+            start++;
+        }
+        longestWindow = Math.max(longestWindow, i - start);
     }
-  }
-  return max
+    return longestWindow;
 };
