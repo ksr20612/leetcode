@@ -1,7 +1,5 @@
 async function addTwoPromises(promise1: Promise<number>, promise2: Promise<number>): Promise<number> {
-    const value1 = await promise1;
-    const value2 = await promise2;
-    return new Promise((res) => res(value1 + value2));
+    return Promise.all([promise1, promise2]).then(values => values.reduce((prev, cur) => prev + cur ));
 };
 
 /**
