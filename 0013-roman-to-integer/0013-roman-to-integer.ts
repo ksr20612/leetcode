@@ -11,7 +11,7 @@ const Roman = {
 function romanToInt(s: string): number {
     let value = 0;
     for(let i = 0; i < s.length; i+=1){
-        Roman[s[i]] < Roman[s[i+1]] ? value -= Roman[s[i]]: value += Roman[s[i]]
+        Roman[s[i]] < Roman[s[i+1]] ? value -= Roman[s[i]] : value += Roman[s[i]]
     }
     return value
 };
